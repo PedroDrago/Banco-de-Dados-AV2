@@ -39,7 +39,7 @@ CREATE TABLE turma (
     numero INT NOT NULL,
     vagas INT NOT NULL,
     quantidade_de_alunos INT,
-    disciplina,
+    disciplina VARCHAR(15),
     PRIMARY KEY(numero),
     UNIQUE(numero),
     foreign KEY(disciplina) references disciplina(codigo)
@@ -94,21 +94,21 @@ INSERT INTO turma VALUES(
     3003,
     50,
     0,
-    "engenharia de software"
+    "ARA402"
 );
 
 INSERT INTO turma VALUES(
     3001,
     65,
     65,
-    "arquitetura de computadores"
+    "ARA301"
 );
 
 INSERT INTO turma VALUES(
     3005,
     50,
     35,
-    "banco de dados"
+    "ARA303"
 );
 
 INSERT INTO aluno VALUES(
