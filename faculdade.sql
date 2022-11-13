@@ -1,12 +1,4 @@
-CREATE TABLE aluno (
-    matricula INT NOT NULL,
-    nome varchar(50),
-    curso varchar(30),
-    CR DECIMAL,
-    PRIMARY KEY (matricula),
-    UNIQUE (matricula),
-    foreign KEY(curso) references curso(nome)
-);
+--Pedro Jupurity Pinheiro Drago - 202208618804
 
 CREATE TABLE curso (
     nome VARCHAR(30) NOT NULL,
@@ -14,36 +6,41 @@ CREATE TABLE curso (
     quantidade_de_disciplinas INT,
     quantidade_de_eletivas INT,
     horas_ac INT,
-    PRIMARY KEY(nome),
-    UNIQUE(nome)
+    PRIMARY KEY(nome)
 );
 
+CREATE TABLE aluno (
+    matricula INT NOT NULL,
+    nome varchar(50),
+    curso varchar(30),
+    CR DECIMAL,
+    PRIMARY KEY (matricula),
+    foreign KEY(nome) references curso(nome)
+);
 CREATE TABLE professor (
     nome varchar(50) NOT NULL,
     departamento varchar(15) NOT NULL,
     id INT NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE (id)
+    PRIMARY KEY (id)
 );
-
 CREATE TABLE disciplina (
-    codigo VARCHAR(15) NOT NULL,
     nome varchar(50) NOT NULL,
     carga_horaria INT,
     creditos INT,
-    PRIMARY KEY (codigo),
-    UNIQUE (codigo)
+    codigo varchar(15) NOT NULL,
+    PRIMARY KEY(codigo)
 );
-
 CREATE TABLE turma (
     numero INT NOT NULL,
     vagas INT NOT NULL,
     quantidade_de_alunos INT,
-    disciplina VARCHAR(15),
+    codigo VARCHAR(15) NOT NULL,
     PRIMARY KEY(numero),
-    UNIQUE(numero),
-    foreign KEY(disciplina) references disciplina(codigo)
+    foreign KEY (codigo) references disciplina(codigo)
 );
+
+
+
 
 INSERT INTO curso VALUES (
     "analise e desenvolvimento de sistemas",
@@ -69,26 +66,26 @@ INSERT INTO curso VALUES (
     120
 );
 
-INSERT INTO disciplina VALUES(
-    "ARA303",
-    "banco de dados",
+INSERT INTO disciplina VALUES (
+    'banco de dados',
     40,
-    4
+    4,
+    'ARA402'
 );
 
-INSERT INTO disciplina VALUES(
-    "ARA301",
-    "arquitetura de computadores",
+INSERT INTO disciplina VALUES (
+    'arquitetura de computadores',
     40,
-    4
+    4,
+    'ARA403'
+);
+INSERT INTO disciplina VALUES (
+    'estrutura de dados',
+    40,
+    4,
+    'ARA404'
 );
 
-INSERT INTO disciplina VALUES(
-    "ARA402",
-    "engenharia de software",
-    40,
-    4
-);
 
 INSERT INTO turma VALUES(
     3003,
